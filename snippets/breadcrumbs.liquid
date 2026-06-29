@@ -1,0 +1,81 @@
+{%- unless template == 'index' or template == 'cart' or template == '404' -%}
+<nav class="reeva-breadcrumbs" aria-label="breadcrumb">
+  <ol class="reeva-breadcrumbs__list">
+    <li class="reeva-breadcrumbs__item">
+      <a href="/" class="reeva-breadcrumbs__link">Home</a>
+    </li>
+
+    {%- if template == 'collection' -%}
+      <li class="reeva-breadcrumbs__item">
+        <span aria-current="page">{{ collection.title }}</span>
+      </li>
+
+    {%- elsif template == 'product' -%}
+      {%- if collection -%}
+        <li class="reeva-breadcrumbs__item">
+          <a href="{{ collection.url }}" class="reeva-breadcrumbs__link">{{ collection.title }}</a>
+        </li>
+      {%- endif -%}
+      <li class="reeva-breadcrumbs__item">
+        <span aria-current="page">{{ product.title }}</span>
+      </li>
+
+    {%- elsif template == 'page' -%}
+      <li class="reeva-breadcrumbs__item">
+        <span aria-current="page">{{ page.title }}</span>
+      </li>
+
+    {%- elsif template == 'blog' -%}
+      <li class="reeva-breadcrumbs__item">
+        <span aria-current="page">{{ blog.title }}</span>
+      </li>
+
+    {%- elsif template == 'article' -%}
+      <li class="reeva-breadcrumbs__item">
+        <a href="{{ blog.url }}" class="reeva-breadcrumbs__link">{{ blog.title }}</a>
+      </li>
+      <li class="reeva-breadcrumbs__item">
+        <span aria-current="page">{{ article.title }}</span>
+      </li>
+    {%- endif -%}
+  </ol>
+</nav>
+
+<style>
+.reeva-breadcrumbs {
+  padding: 12px 0;
+  font-size: 13px;
+  margin-left:43px;
+}
+.reeva-breadcrumbs__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.reeva-breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #4a4a4a;
+}
+.reeva-breadcrumbs__item:not(:last-child)::after {
+  content: '›';
+  color: #999;
+}
+.reeva-breadcrumbs__link {
+  color: #267870;
+  text-decoration: none;
+}
+.reeva-breadcrumbs__link:hover {
+  text-decoration: underline;
+}
+.reeva-breadcrumbs__item span[aria-current="page"] {
+  color: #1a3c34;
+  font-weight: 450;
+}
+</style>
+{%- endunless -%}

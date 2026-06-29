@@ -1,0 +1,719 @@
+{% comment %}
+  Reeva.life - Gifting Section
+  File: sections/reeva-gifting-section.liquid
+{% endcomment %}
+
+<section
+  class="reeva-gifting section-{{ section.id }}"
+  style="
+    --reeva-bg: {{ section.settings.background_color }};
+    --reeva-card-bg: {{ section.settings.card_background }};
+    --reeva-heading: {{ section.settings.heading_color }};
+    --reeva-text: {{ section.settings.text_color }};
+    --reeva-accent: {{ section.settings.accent_color }};
+    --reeva-border: {{ section.settings.border_color }};
+    --reeva-top: {{ section.settings.padding_top }}px;
+    --reeva-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="reeva-gifting-container">
+    <div class="reeva-gifting-header">
+      {% if section.settings.kicker != blank %}
+        <div class="reeva-gifting-kicker">{{ section.settings.kicker }}</div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="reeva-gifting-layout">
+      <div class="reeva-gifting-feature">
+        <a href="{{ section.settings.feature_link | default: '#' }}" class="reeva-gifting-feature-card">
+          <div class="reeva-gifting-feature-media">
+            {% if section.settings.feature_image != blank %}
+              {{
+                section.settings.feature_image
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'reeva-gifting-feature-image',
+                  widths: '500, 700, 900, 1100, 1400',
+                  sizes: '(max-width: 749px) 92vw, 50vw',
+                  alt: section.settings.feature_heading
+              }}
+            {% else %}
+              <div class="reeva-gifting-placeholder">
+                {{ 'collection-4' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+
+            <div class="reeva-gifting-overlay"></div>
+
+            {% if section.settings.feature_badge != blank %}
+              <span class="reeva-gifting-badge">{{ section.settings.feature_badge }}</span>
+            {% endif %}
+
+            <div class="reeva-gifting-feature-content">
+              {% if section.settings.feature_heading != blank %}
+                <h3>{{ section.settings.feature_heading }}</h3>
+              {% endif %}
+
+              {% if section.settings.feature_text != blank %}
+                <p>{{ section.settings.feature_text }}</p>
+              {% endif %}
+
+              {% if section.settings.feature_button != blank %}
+                <span class="reeva-gifting-feature-link">
+                  {{ section.settings.feature_button }}
+                  <span aria-hidden="true">→</span>
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="reeva-gifting-cards">
+        {% for block in section.blocks %}
+          <a
+            href="{{ block.settings.link | default: '#' }}"
+            class="reeva-gifting-card"
+            {{ block.shopify_attributes }}
+          >
+            <div class="reeva-gifting-card-image-wrap">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 700
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'reeva-gifting-card-image',
+                    widths: '250, 400, 550, 700',
+                    sizes: '(max-width: 749px) 42vw, 25vw',
+                    alt: block.settings.title
+                }}
+              {% else %}
+                <div class="reeva-gifting-small-placeholder">
+                  {{ 'product-2' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="reeva-gifting-card-content">
+              {% if block.settings.badge != blank %}
+                <span>{{ block.settings.badge }}</span>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h3>{{ block.settings.title }}</h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <p>{{ block.settings.text }}</p>
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.main_button_label != blank %}
+      <div class="reeva-gifting-btn-wrap">
+        <a href="{{ section.settings.main_button_link | default: '#' }}" class="reeva-gifting-main-btn">
+          {{ section.settings.main_button_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .section-{{ section.id }} {
+    background: var(--reeva-bg);
+    padding-top: var(--reeva-top);
+    padding-bottom: var(--reeva-bottom);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-container {
+    width: min(100% - 32px, 1320px);
+    margin: 0 auto;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-header {
+    text-align: center;
+    margin-bottom: 42px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-kicker {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--reeva-accent);
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-kicker::before,
+  .section-{{ section.id }} .reeva-gifting-kicker::after {
+    content: "";
+    width: 70px;
+    height: 1px;
+    background: rgba(184, 145, 85, 0.55);
+    display: block;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-header h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.08;
+    font-weight: 500;
+    color: var(--reeva-heading);
+    margin: 0 0 14px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-header p {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--reeva-text);
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-layout {
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    gap: 26px;
+    align-items: stretch;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-card,
+  .section-{{ section.id }} .reeva-gifting-card {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-card {
+    display: block;
+    height: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--reeva-border);
+    box-shadow: 0 14px 36px rgba(37, 37, 37, 0.06);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-media {
+    position: relative;
+    min-height: 620px;
+    height: 100%;
+    background: #f5efe5;
+    overflow: hidden;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-card:hover .reeva-gifting-feature-image {
+    transform: scale(1.045);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      rgba(0, 0, 0, 0.12) 45%,
+      rgba(0, 0, 0, 0.58) 100%
+    );
+    z-index: 1;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-badge {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 2;
+    background: rgba(255, 250, 242, 0.94);
+    color: var(--reeva-accent);
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(234, 220, 199, 0.8);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 34px;
+    text-align: left;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-content h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(32px, 3vw, 48px);
+    line-height: 1.08;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0 0 12px;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-content p {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 460px;
+    margin: 0 0 20px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-feature-link {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.78);
+    padding-bottom: 4px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--reeva-card-bg);
+    border: 1px solid var(--reeva-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(37, 37, 37, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(37, 37, 37, 0.08);
+    border-color: rgba(38, 120, 112, 0.35);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card-image-wrap {
+    width: 100%;
+    aspect-ratio: 1.25 / 1;
+    overflow: hidden;
+    background: #f5efe5;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card:hover .reeva-gifting-card-image {
+    transform: scale(1.045);
+  }
+
+  .section-{{ section.id }} .reeva-gifting-placeholder,
+  .section-{{ section.id }} .reeva-gifting-placeholder svg,
+  .section-{{ section.id }} .reeva-gifting-small-placeholder,
+  .section-{{ section.id }} .reeva-gifting-small-placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-placeholder,
+  .section-{{ section.id }} .reeva-gifting-small-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5efe5;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-placeholder svg,
+  .section-{{ section.id }} .reeva-gifting-small-placeholder svg {
+    opacity: 0.35;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card-content {
+    padding: 20px 18px 22px;
+    text-align: center;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card-content span {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--reeva-accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card-content h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 23px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--reeva-heading);
+    margin: 0 0 10px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-card-content p {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--reeva-text);
+    margin: 0;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-btn-wrap {
+    text-align: center;
+    margin-top: 38px;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-main-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 38px;
+    border-radius: 6px;
+    background: var(--reeva-accent);
+    color: #ffffff;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .section-{{ section.id }} .reeva-gifting-main-btn:hover {
+    opacity: 0.92;
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 989px) {
+    .section-{{ section.id }} .reeva-gifting-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-feature-media {
+      min-height: 480px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }} {
+      padding-top: calc(var(--reeva-top) * 0.7);
+      padding-bottom: calc(var(--reeva-bottom) * 0.7);
+    }
+
+    .section-{{ section.id }} .reeva-gifting-container {
+      width: min(100% - 24px, 1320px);
+    }
+
+    .section-{{ section.id }} .reeva-gifting-header {
+      margin-bottom: 28px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-kicker {
+      font-size: 11px;
+      letter-spacing: 3px;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-kicker::before,
+    .section-{{ section.id }} .reeva-gifting-kicker::after {
+      width: 34px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-header h2 {
+      font-size: 34px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-header p {
+      font-size: 14px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-feature-media {
+      min-height: 360px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-feature-content {
+      padding: 24px 20px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-feature-content h3 {
+      font-size: 30px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-cards {
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-card-content {
+      padding: 16px 12px 18px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-card-content h3 {
+      font-size: 20px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-card-content p {
+      font-size: 12px;
+    }
+
+    .section-{{ section.id }} .reeva-gifting-main-btn {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .section-{{ section.id }} .reeva-gifting-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Reeva Gifting",
+  "tag": "section",
+  "class": "reeva-gifting-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Small top heading",
+      "default": "Gift Edit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "Find the perfect gift"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Thoughtful jewellery gifts for birthdays, anniversaries, celebrations and everyday moments."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Main feature image"
+    },
+    {
+      "type": "text",
+      "id": "feature_badge",
+      "label": "Feature badge",
+      "default": "Reeva Gift Box"
+    },
+    {
+      "type": "text",
+      "id": "feature_heading",
+      "label": "Feature heading",
+      "default": "Wrapped with meaning"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_text",
+      "label": "Feature text",
+      "default": "Choose elegant pieces made for memorable gifting, finished with a refined Reeva.life touch."
+    },
+    {
+      "type": "text",
+      "id": "feature_button",
+      "label": "Feature button label",
+      "default": "Shop Gift Collection"
+    },
+    {
+      "type": "url",
+      "id": "feature_link",
+      "label": "Feature link"
+    },
+    {
+      "type": "text",
+      "id": "main_button_label",
+      "label": "Main button label",
+      "default": "Explore All Gifts"
+    },
+    {
+      "type": "url",
+      "id": "main_button_link",
+      "label": "Main button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#fffaf2"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f8f2e8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#282828"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#267870"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Card border color",
+      "default": "#eadcc7"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gift_card",
+      "name": "Gift card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Gift image"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Small label",
+          "default": "Gift Pick"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "default": "Gifts for Her"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Card text",
+          "default": "Elegant jewellery pieces for someone special."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reeva Gifting",
+      "blocks": [
+        {
+          "type": "gift_card",
+          "settings": {
+            "badge": "For Her",
+            "title": "Gifts for Her",
+            "text": "Elegant pieces for someone special."
+          }
+        },
+        {
+          "type": "gift_card",
+          "settings": {
+            "badge": "Anniversary",
+            "title": "Anniversary Gifts",
+            "text": "Timeless jewellery for meaningful milestones."
+          }
+        },
+        {
+          "type": "gift_card",
+          "settings": {
+            "badge": "Budget Edit",
+            "title": "Under ₹2,999",
+            "text": "Beautiful gift picks within budget."
+          }
+        },
+        {
+          "type": "gift_card",
+          "settings": {
+            "badge": "Premium",
+            "title": "Diamond Gifts",
+            "text": "Sparkling gifts with a refined finish."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

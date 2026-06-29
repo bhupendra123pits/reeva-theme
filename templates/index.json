@@ -1,0 +1,1035 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "reeva_custom_hero_itQP4w": {
+      "type": "reeva-custom-hero",
+      "name": "Reeva Custom Hero",
+      "settings": {
+        "eyebrow": "New Everyday Collection",
+        "heading": "Jewellery for Every Day, \nEvery Moment",
+        "description": "Elegant rings, earrings, necklaces, and bracelets crafted for daily wear, meaningful gifting, and special celebrations",
+        "hero_image": "shopify://shop_images/edited-photo_herosection_66f5b8c6-e8d8-485a-8330-64729a6820db.png",
+        "hero_video": "https://cdn.shopify.com/videos/c/o/v/793343ddb1c447e79af20bc1b161d86f.mp4",
+        "video_overlay_opacity": 70,
+        "button_1_text": "Shop Fresh Picks",
+        "button_1_link": "",
+        "button_2_text": "Explore Collection",
+        "button_2_link": "shopify://collections"
+      }
+    },
+    "reeva_trust_bar_fKCBeJ": {
+      "type": "reeva-trust-bar",
+      "name": "Reeva Trust Bar",
+      "settings": {}
+    },
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "text_YLPk4p": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Browse our latest products</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_H9gpTf": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop all",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YLPk4p",
+        "button_H9gpTf"
+      ],
+      "disabled": true,
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": true,
+        "overlay_color": "#12121266",
+        "overlay_style": "solid",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 100
+      }
+    },
+    "reeva_product_carousel_mtGkF3": {
+      "type": "reeva-product-carousel",
+      "name": "Reeva Product Carousel",
+      "settings": {
+        "kicker": "New Arrivals",
+        "heading": "Fresh sparkle, just added",
+        "subheading": "Discover the latest jewellery pieces crafted for everyday elegance and special moments.",
+        "button_label": "Shop Fresh Picks",
+        "button_url": "shopify://collections/fresh-picks",
+        "background_image": "shopify://shop_images/new_arrivals.png",
+        "background_color": "#f9f3ea",
+        "overlay_color": "#f7ead6",
+        "overlay_opacity": 25,
+        "kicker_color": "#267870",
+        "heading_color": "#1a3c34",
+        "text_color": "#4a4a4a",
+        "button_hover_color": "#267870",
+        "section_height": 200,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "product_list_fa6P9H": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_YFtzcL": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_MWeP9V": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "product_list_button_MWeP9V"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_677WP3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_YXxMTj": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_JQzVV4": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_677WP3",
+            "product_title_YXxMTj",
+            "price_JQzVV4"
+          ]
+        }
+      },
+      "disabled": true,
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "collection_list_pNRQ4V": {
+      "type": "collection-list",
+      "blocks": {
+        "group_nQmzrN": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_TzftCW": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h3><strong>Shop by category</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_TzftCW"
+          ]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "collection_card_gap": 0,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-e7e93eb2-bfd6-4916-8335-f4d0144ba123",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection_title_wgn4PQ": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_title_wgn4PQ"
+          ]
+        }
+      },
+      "block_order": [
+        "group_nQmzrN"
+      ],
+      "disabled": true,
+      "name": "t:names.collections_carousel",
+      "settings": {
+        "collection_list": [],
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "columns": 6,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 8,
+        "bento_gap": 8,
+        "rows_gap": 8,
+        "max_collections": 4,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "reeva_category_grid_iNEGXU": {
+      "type": "reeva-category-grid",
+      "blocks": {
+        "category_ewA6gy": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_26_2026_05_15_06_PM_1.png",
+            "icon_svg": "",
+            "title": "Rings",
+            "text": "From dainty bands to statement rings.",
+            "button_label": "Explore Rings",
+            "link": "shopify://collections/rings"
+          }
+        },
+        "category_Rxak8c": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/earings.png",
+            "icon_svg": "",
+            "title": "Earrings",
+            "text": "Elegant hoops, studs and danglers for every look.",
+            "button_label": "Explore Earrings",
+            "link": "shopify://collections/earrings"
+          }
+        },
+        "category_t34mM6": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/necklace_3be309cf-7e55-4408-8261-f56a0e765aca.png",
+            "icon_svg": "",
+            "title": "Necklaces",
+            "text": "Timeless pendants and necklaces to cherish.",
+            "button_label": "Explore Necklaces",
+            "link": "shopify://pages/necklaces"
+          }
+        },
+        "category_pUbnPq": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/braclet.png",
+            "icon_svg": "",
+            "title": "Bracelets",
+            "text": "Minimal chains to charming bracelets.",
+            "button_label": "Explore Bracelets",
+            "link": "shopify://collections/bracelets-bangles"
+          }
+        },
+        "category_E6JBWY": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_26_2026_05_15_06_PM_6_706eead7-52e1-4df2-a677-804c191b72d1.png",
+            "icon_svg": "",
+            "title": "Diamond",
+            "text": "IGI certified diamonds for unmatched brilliance.",
+            "button_label": "Explore Diamonds",
+            "link": ""
+          }
+        },
+        "category_rktARb": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_26_2026_05_15_06_PM_4.png",
+            "icon_svg": "",
+            "title": "Traditional",
+            "text": "Celebrate heritage with timeless traditional pieces.",
+            "button_label": "Explore Traditional",
+            "link": ""
+          }
+        },
+        "category_zeCHR7": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_26_2026_05_15_06_PM_7.png",
+            "icon_svg": "",
+            "title": "Nose Pins",
+            "text": "Subtle, elegant and perfectly you.",
+            "button_label": "Explore Nose Pins",
+            "link": ""
+          }
+        },
+        "category_nHqb9N": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_26_2026_05_15_06_PM_8.png",
+            "icon_svg": "",
+            "title": "Gifting",
+            "text": "Thoughtful gifts for your special moments.",
+            "button_label": "Explore Gifts",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_ewA6gy",
+        "category_Rxak8c",
+        "category_t34mM6",
+        "category_pUbnPq",
+        "category_E6JBWY",
+        "category_rktARb",
+        "category_zeCHR7",
+        "category_nHqb9N"
+      ],
+      "name": "Reeva Category Grid",
+      "settings": {
+        "kicker": "Shop by Category",
+        "heading": "Find your perfect sparkle",
+        "subheading": "Timeless designs for every style, occasion and moment.",
+        "desktop_columns": "4",
+        "main_button_label": "Explore Our Collection",
+        "main_button_link": "shopify://collections",
+        "background_color": "#f8f2e8",
+        "card_background": "#fffaf2",
+        "heading_color": "#282828",
+        "text_color": "#555555",
+        "accent_color": "#267870",
+        "border_color": "#eadcc7",
+        "padding_top": 36,
+        "padding_bottom": 72
+      }
+    },
+    "reeva_occasion_grid_9q8iEU": {
+      "type": "reeva-occasion-grid",
+      "blocks": {
+        "occasion_Ez3KJk": {
+          "type": "occasion",
+          "settings": {
+            "large_card": true,
+            "badge": "fresh  picks",
+            "title": "Everyday Elegance",
+            "text": "Subtle rings, earrings and pendants designed for daily comfort.",
+            "button_label": "Shop Everyday",
+            "link": ""
+          }
+        },
+        "occasion_hTMTFH": {
+          "type": "occasion",
+          "settings": {
+            "large_card": false,
+            "badge": "in vogue",
+            "title": "Workwear Jewellery",
+            "text": "Polished pieces that feel refined, light and easy to style.",
+            "button_label": "Shop Workwear",
+            "link": ""
+          }
+        },
+        "occasion_rqaDEi": {
+          "type": "occasion",
+          "settings": {
+            "large_card": false,
+            "badge": "Festive sparkle",
+            "title": "Festive Glow",
+            "text": "Elegant jewellery for celebrations, rituals and family gatherings.",
+            "button_label": "Shop Festive",
+            "link": ""
+          }
+        },
+        "occasion_hcmDPC": {
+          "type": "occasion",
+          "settings": {
+            "large_card": false,
+            "badge": "Gifting",
+            "title": "Meaningful Gifts",
+            "text": "Thoughtful picks for birthdays, anniversaries and special moments.",
+            "button_label": "Shop Gifts",
+            "link": ""
+          }
+        },
+        "occasion_9i8zwD": {
+          "type": "occasion",
+          "settings": {
+            "large_card": true,
+            "badge": "Celebration",
+            "title": "Wedding & Party",
+            "text": "Statement pieces created for memorable occasions and timeless photographs.",
+            "button_label": "Shop Celebration",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "occasion_Ez3KJk",
+        "occasion_hTMTFH",
+        "occasion_rqaDEi",
+        "occasion_hcmDPC",
+        "occasion_9i8zwD"
+      ],
+      "name": "Reeva Occasion Grid",
+      "settings": {
+        "kicker": "Shop by Occasion",
+        "heading": "Jewellery for every moment",
+        "subheading": "Discover elegant pieces for daily wear, celebrations, gifting and meaningful occasions.",
+        "layout_style": "bento",
+        "main_button_label": "Explore Occasion Edit",
+        "main_button_link": "",
+        "background_color": "#fffaf2",
+        "card_background": "#f8f2e8",
+        "heading_color": "#282828",
+        "text_color": "#555555",
+        "accent_color": "#267870",
+        "border_color": "#eadcc7",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "reeva_image_text_banner_jn73tj": {
+      "type": "reeva-image-text-banner",
+      "blocks": {
+        "feature_PLbzRQ": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "feature_text": "Elegant designs for everyday wear"
+          }
+        },
+        "feature_idBYD4": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "feature_text": "Perfect for gifting and special occasions"
+          }
+        },
+        "feature_Dg7XFQ": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "feature_text": "Crafted with a refined, timeless finish"
+          }
+        }
+      },
+      "block_order": [
+        "feature_PLbzRQ",
+        "feature_idBYD4",
+        "feature_Dg7XFQ"
+      ],
+      "name": "Reeva Image Text Banner",
+      "settings": {
+        "kicker": "Reeva.life Edit",
+        "heading": "Timeless pieces for everyday luxury",
+        "text": "<p>Explore jewellery designed for daily wear, meaningful gifting, and special moments. Each piece is styled to feel elegant, personal, and easy to wear.</p>",
+        "image": "shopify://shop_images/necklace.png",
+        "image_position": "left",
+        "text_alignment": "left",
+        "primary_button_label": "Explore Collection",
+        "primary_button_link": "",
+        "secondary_button_label": "Our Story",
+        "secondary_button_link": "",
+        "show_features": true,
+        "background_color": "#fffaf2",
+        "card_background": "#f8f2e8",
+        "heading_color": "#282828",
+        "text_color": "#555555",
+        "accent_color": "#267870",
+        "border_color": "#eadcc7",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "reeva_bento_grid_NRqUBU": {
+      "type": "reeva-bento-grid",
+      "blocks": {
+        "collection_card_d68Eak": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "card_size": "large",
+            "badge": "Everyday",
+            "title": "Everyday Elegance",
+            "text": "Minimal pieces made for daily wear and effortless styling.",
+            "button_label": "Shop Everyday",
+            "link": ""
+          }
+        },
+        "collection_card_3CjJUM": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "card_size": "small",
+            "badge": "Classic",
+            "title": "Rings",
+            "text": "Elegant bands and statement rings.",
+            "button_label": "Explore Rings",
+            "link": ""
+          }
+        },
+        "collection_card_VPbHHc": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "card_size": "small",
+            "badge": "Sparkle",
+            "title": "Earrings",
+            "text": "Studs, hoops and delicate drops.",
+            "button_label": "Explore Earrings",
+            "link": ""
+          }
+        },
+        "collection_card_VBmpQg": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "card_size": "wide",
+            "badge": "Gifting",
+            "title": "Meaningful Gifts",
+            "text": "Thoughtful jewellery picks for birthdays, anniversaries and special occasions.",
+            "button_label": "Shop Gifts",
+            "link": ""
+          }
+        },
+        "collection_card_NdTmtK": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "card_size": "tall",
+            "badge": "Premium",
+            "title": "Diamond Jewellery",
+            "text": "Refined diamond pieces with timeless brilliance.",
+            "button_label": "Explore Diamonds",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_d68Eak",
+        "collection_card_3CjJUM",
+        "collection_card_VPbHHc",
+        "collection_card_VBmpQg",
+        "collection_card_NdTmtK"
+      ],
+      "name": "Reeva Bento Collection Grid",
+      "settings": {
+        "kicker": "Curated Collections",
+        "heading": "Explore jewellery by style",
+        "subheading": "Discover refined edits for everyday wear, gifting, celebration and timeless personal style.",
+        "main_button_label": "View All Collections",
+        "main_button_link": "",
+        "background_color": "#f8f2e8",
+        "heading_color": "#282828",
+        "text_color": "#555555",
+        "accent_color": "#267870",
+        "border_color": "#eadcc7",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "reeva_gifting_section_768MUR": {
+      "type": "reeva-gifting-section",
+      "blocks": {
+        "gift_card_CkGdz8": {
+          "type": "gift_card",
+          "settings": {
+            "badge": "For Her",
+            "title": "Gifts for Her",
+            "text": "Elegant pieces for someone special.",
+            "link": ""
+          }
+        },
+        "gift_card_HKfcQU": {
+          "type": "gift_card",
+          "settings": {
+            "badge": "Anniversary",
+            "title": "Anniversary Gifts",
+            "text": "Timeless jewellery for meaningful milestones.",
+            "link": ""
+          }
+        },
+        "gift_card_8wdQJY": {
+          "type": "gift_card",
+          "settings": {
+            "badge": "Budget Edit",
+            "title": "Under ₹2,999",
+            "text": "Beautiful gift picks within budget.",
+            "link": ""
+          }
+        },
+        "gift_card_KQhaAm": {
+          "type": "gift_card",
+          "settings": {
+            "badge": "Premium",
+            "title": "Diamond Gifts",
+            "text": "Sparkling gifts with a refined finish.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "gift_card_CkGdz8",
+        "gift_card_HKfcQU",
+        "gift_card_8wdQJY",
+        "gift_card_KQhaAm"
+      ],
+      "name": "Reeva Gifting",
+      "settings": {
+        "kicker": "Gift Edit",
+        "heading": "Find the perfect gift",
+        "subheading": "Thoughtful jewellery gifts for birthdays, anniversaries, celebrations and everyday moments.",
+        "feature_badge": "Reeva Gift Box",
+        "feature_heading": "Wrapped with meaning",
+        "feature_text": "Choose elegant pieces made for memorable gifting, finished with a refined Reeva.life touch.",
+        "feature_button": "Shop Gift Collection",
+        "feature_link": "",
+        "main_button_label": "Explore All Gifts",
+        "main_button_link": "",
+        "background_color": "#fffaf2",
+        "card_background": "#f8f2e8",
+        "heading_color": "#282828",
+        "text_color": "#555555",
+        "accent_color": "#267870",
+        "border_color": "#eadcc7",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "reeva_instagram_style_grid_LRB6z9": {
+      "type": "reeva-instagram-style-grid",
+      "blocks": {
+        "image_card_Yz7RGA": {
+          "type": "image_card",
+          "settings": {
+            "card_size": "large",
+            "icon_svg": "",
+            "title": "Everyday sparkle",
+            "text": "Minimal pieces styled for daily elegance.",
+            "link": ""
+          }
+        },
+        "image_card_3qhUGr": {
+          "type": "image_card",
+          "settings": {
+            "card_size": "small",
+            "icon_svg": "",
+            "title": "Golden details",
+            "text": "Soft jewellery moments.",
+            "link": ""
+          }
+        },
+        "image_card_UxgYC6": {
+          "type": "image_card",
+          "settings": {
+            "card_size": "small",
+            "icon_svg": "",
+            "title": "Gift ready",
+            "text": "Wrapped with meaning.",
+            "link": ""
+          }
+        },
+        "image_card_TJLrNq": {
+          "type": "image_card",
+          "settings": {
+            "card_size": "wide",
+            "icon_svg": "",
+            "title": "Occasion glow",
+            "text": "Jewellery for celebrations and special moments.",
+            "link": ""
+          }
+        },
+        "image_card_kQaLRH": {
+          "type": "image_card",
+          "settings": {
+            "card_size": "tall",
+            "icon_svg": "",
+            "title": "Diamond shine",
+            "text": "A refined touch of brilliance.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_card_Yz7RGA",
+        "image_card_3qhUGr",
+        "image_card_UxgYC6",
+        "image_card_TJLrNq",
+        "image_card_kQaLRH"
+      ],
+      "name": "Reeva Instagram Grid",
+      "settings": {
+        "kicker": "Styled by Reeva.life",
+        "heading": "Jewellery in real moments",
+        "subheading": "A soft visual edit of everyday sparkle, gifting details and occasion-ready styling.",
+        "main_button_label": "Follow the Sparkle",
+        "main_button_link": "",
+        "background_color": "#f8f2e8",
+        "heading_color": "#282828",
+        "text_color": "#555555",
+        "accent_color": "#267870",
+        "border_color": "#eadcc7",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "17804892447e4f6e37": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "reeva_custom_hero_itQP4w",
+    "reeva_trust_bar_fKCBeJ",
+    "hero_jVaWmY",
+    "reeva_product_carousel_mtGkF3",
+    "product_list_fa6P9H",
+    "collection_list_pNRQ4V",
+    "reeva_category_grid_iNEGXU",
+    "reeva_occasion_grid_9q8iEU",
+    "reeva_image_text_banner_jn73tj",
+    "reeva_bento_grid_NRqUBU",
+    "reeva_gifting_section_768MUR",
+    "reeva_instagram_style_grid_LRB6z9",
+    "17804892447e4f6e37"
+  ]
+}

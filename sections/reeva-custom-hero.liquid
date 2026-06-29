@@ -1,0 +1,636 @@
+{% comment %}
+  REEVA HERO — MARKET READY
+  Current: India content active
+  Future US hero: wrap section content inside
+  {% if is_us_market %}
+    [US hero content here]
+  {% else %}
+    [existing India hero here]  
+  {% endif %}
+  DO NOT modify existing code until US content is ready
+{% endcomment %}
+
+
+{% comment %}
+  Reeva Custom Hero Section
+  Mobile optimized luxury jewellery hero - with video background
+{% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+>
+
+<section class="reeva-hero-section">
+  <div class="reeva-hero-wrapper">
+    {% comment %} VIDEO BACKGROUND {% endcomment %}
+    {% if section.settings.hero_video != blank %}
+      <div class="reeva-hero-video-bg">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          class="reeva-hero-video"
+        >
+          <source src="{{ section.settings.hero_video }}" type="video/mp4">
+        </video>
+        <div class="reeva-hero-video-overlay"></div>
+      </div>
+    {% endif %}
+
+    <div class="reeva-hero-content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="reeva-hero-eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="reeva-hero-heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      <div class="reeva-hero-divider">
+        <span></span>
+        <small>✦</small>
+      </div>
+
+      {% if section.settings.description != blank %}
+        <p class="reeva-hero-description">{{ section.settings.description }}</p>
+      {% endif %}
+
+      <div class="reeva-hero-buttons">
+        {% if section.settings.button_1_text != blank %}
+          <a href="{{ section.settings.button_1_link }}" class="reeva-btn reeva-btn-primary">
+            {{ section.settings.button_1_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_2_text != blank %}
+          <a href="{{ section.settings.button_2_link }}" class="reeva-btn reeva-btn-secondary">
+            {{ section.settings.button_2_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="reeva-hero-image-area">
+      <div class="reeva-hero-curve"></div>
+
+      {% if section.settings.hero_image != blank %}
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1400 }}"
+          alt="{{ section.settings.hero_image.alt | escape }}"
+          class="reeva-hero-image"
+          loading="eager"
+          width="700"
+          height="720"
+        >
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+    .reeva-hero-section {
+      width: 100%;
+      border-bottom: 1px solid rgba(190, 166, 130, 0.28);
+      overflow: hidden;
+    }
+
+    .reeva-hero-wrapper {
+      position: relative;
+      display: grid;
+      grid-template-columns: 46% 54%;
+      min-height: clamp(360px, 50vh, 480px);
+      max-width: 1920px;
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at 16% 80%, rgba(221, 198, 157, 0.28), transparent 34%),
+        linear-gradient(90deg, #fffaf2 0%, #fbf7ef 46%, #f4e4d2 100%);
+    }
+
+    /* ── Video Background ─────────────────────────────────────────────── */
+    .reeva-hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .reeva-hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .reeva-hero-video-overlay {
+      position: absolute;
+      {% comment %} inset: 0; {% endcomment %}
+      z-index:1;
+      background: rgba(255, 250, 242, 0.55);
+    }
+
+    /* ── Content ──────────────────────────────────────────────────────── */
+    .reeva-hero-content {
+      position: relative;
+      z-index: 3;
+      padding: clamp(55px, 7vh, 90px) 40px clamp(45px, 6vh, 75px) 95px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .reeva-hero-eyebrow {
+      margin: 0 0 20px;
+      margin-left: 3px;
+      color: #3f8984;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .reeva-hero-heading {
+      margin: 0;
+      max-width: 570px;
+      color: #1f2024;
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 4.2vw, 68px);
+      line-height: 1.04;
+      font-weight: 400;
+      letter-spacing: -1.8px;
+    }
+
+    .reeva-hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 28px 0 18px;
+      color: #c69b53;
+    }
+
+    .reeva-hero-divider span {
+      width: 70px;
+      height: 1px;
+      background: #c69b53;
+      display: inline-block;
+    }
+
+    .reeva-hero-divider small {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .reeva-hero-description {
+      max-width: 470px;
+      margin: 0;
+      color: #68686d;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .reeva-hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin-top: 38px;
+      flex-wrap: wrap;
+    }
+
+    .reeva-btn {
+      min-width: 210px;
+      min-height: 54px;
+      padding: 15px 26px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .reeva-btn-primary {
+      background: #267870;
+      color: #ffffff;
+      border: 1px solid #267870;
+    }
+
+    .reeva-btn-primary:hover {
+      background: #1e5e58;
+      border-color: #1e5e58;
+    }
+
+    .reeva-btn-secondary {
+      background: transparent;
+      color: #3f8984;
+      border: 1px solid #3f8984;
+    }
+
+    .reeva-btn-secondary:hover {
+      background: rgba(63, 137, 132, 0.08);
+    }
+
+    /* ── Image Area ───────────────────────────────────────────────────── */
+    .reeva-hero-image-area {
+      position: relative;
+      z-index: 2;
+      min-height: clamp(360px, 50vh, 480px);
+      overflow: hidden;
+    }
+
+    .reeva-hero-image {
+      position: absolute;
+      right: -8px;
+      bottom: 0;
+      width: 92%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      z-index: 1;
+      display:none;
+    }
+
+    .reeva-hero-image-area::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      {% comment %} background: linear-gradient(90deg, rgba(251, 247, 239, 0.18), transparent 32%); {% endcomment %}
+      pointer-events: none;
+    }
+
+    
+
+    /* ── Tablet Base (750px - 1199px) ─────────────────────────────────── */
+    @media screen and (min-width: 750px) and (max-width: 1199px) {
+      .reeva-hero-wrapper {
+        grid-template-columns: 45% 55%;
+        min-height: clamp(420px, 55vh, 560px);
+      }
+
+      .reeva-hero-content {
+        padding: 60px 28px 60px 45px;
+      }
+
+      .reeva-hero-eyebrow {
+        font-size: 13px;
+        letter-spacing: 3px;
+        margin-bottom: 16px;
+      }
+
+      .reeva-hero-heading {
+        font-size: clamp(34px, 4.5vw, 52px);
+        letter-spacing: -1.2px;
+        max-width: 100%;
+      }
+
+      .reeva-hero-divider {
+        margin: 22px 0 16px;
+      }
+
+      .reeva-hero-divider span {
+        width: 60px;
+      }
+
+      .reeva-hero-description {
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: 420px;
+      }
+
+      .reeva-hero-buttons {
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .reeva-btn {
+        min-width: 175px;
+        min-height: 50px;
+        padding: 13px 22px;
+        font-size: 15px;
+      }
+
+      .reeva-hero-image-area {
+        min-height: clamp(420px, 55vh, 560px);
+      }
+
+      .reeva-hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin-right: 0;
+      }
+    }
+
+    @media screen and (min-width: 1000px) and (max-width: 1199px) {
+      .reeva-hero-image {
+        object-position: 90% center;
+      }
+    }
+
+    @media screen and (min-width: 750px) and (max-width: 999px) and (orientation: portrait) {
+      .reeva-hero-wrapper {
+        grid-template-columns: 44% 56%;
+        min-height: 430px;
+      }
+
+      .reeva-hero-content {
+        padding: 45px 22px 45px 32px;
+      }
+
+      .reeva-hero-eyebrow {
+        font-size: 11px;
+        letter-spacing: 2.4px;
+        margin-bottom: 12px;
+      }
+
+      .reeva-hero-heading {
+        font-size: clamp(28px, 4vw, 36px);
+        line-height: 1.08;
+        letter-spacing: -0.8px;
+      }
+
+      .reeva-hero-divider {
+        margin: 16px 0 12px;
+      }
+
+      .reeva-hero-description {
+        font-size: 13px;
+        line-height: 1.45;
+        max-width: 330px;
+      }
+
+      .reeva-hero-buttons {
+        margin-top: 20px;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .reeva-btn {
+        min-width: 190px;
+        max-width: 220px;
+        min-height: 44px;
+        font-size: 13px;
+        padding: 10px 16px;
+      }
+
+      .reeva-hero-image-area {
+        min-height: 430px;
+      }
+
+      .reeva-hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 90% center;
+      }
+    }
+
+    @media screen and (min-width: 1000px) and (max-width: 1199px) and (orientation: landscape) {
+      .reeva-hero-wrapper {
+        grid-template-columns: 55% 45%;
+        min-height: 380px;
+      }
+
+      .reeva-hero-content {
+        padding: 45px 30px 45px 55px;
+      }
+
+      .reeva-hero-heading {
+        font-size: clamp(34px, 4vw, 46px);
+        line-height: 1.08;
+      }
+
+      .reeva-hero-description {
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 390px;
+      }
+
+      .reeva-hero-buttons {
+        margin-top: 22px;
+        gap: 14px;
+      }
+
+      .reeva-btn {
+        min-width: 160px;
+        min-height: 44px;
+        font-size: 13px;
+        padding: 10px 16px;
+      }
+
+      .reeva-hero-image-area {
+        min-height: 380px;
+      }
+
+      .reeva-hero-image {
+        object-position: 90% center;
+      }
+    }
+
+    /* ── Mobile ───────────────────────────────────────────────────────── */
+    @media screen and (max-width: 749px) {
+      .reeva-hero-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+        background:
+          radial-gradient(circle at 12% 90%, rgba(221, 198, 157, 0.22), transparent 36%),
+          #fffaf2;
+      }
+
+      .reeva-hero-video-bg {
+         display: none;
+      }
+
+      .reeva-hero-video-overlay {
+        background: rgba(255, 250, 242, 0.72);
+      }
+
+      .reeva-hero-content {
+        order: 2;
+        padding: 34px 22px 42px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .reeva-hero-eyebrow {
+        font-size: 12px;
+        letter-spacing: 2.8px;
+        margin-bottom: 14px;
+      }
+
+      .reeva-hero-heading {
+        max-width: 100%;
+        font-size: clamp(38px, 12vw, 54px);
+        line-height: 1.06;
+        letter-spacing: -1px;
+      }
+
+      .reeva-hero-divider {
+        justify-content: center;
+        margin: 22px 0 14px;
+      }
+
+      .reeva-hero-divider span {
+        width: 54px;
+      }
+
+      .reeva-hero-description {
+        max-width: 340px;
+        font-size: 15.5px;
+        line-height: 1.6;
+      }
+
+      .reeva-hero-buttons {
+        width: 100%;
+        margin-top: 26px;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .reeva-btn {
+        width: 100%;
+        max-width: 320px;
+        min-height: 50px;
+        font-size: 15px;
+      }
+
+      .reeva-hero-image-area {
+        order: 1;
+        width: 100%;
+        min-height: 460px;
+        background: linear-gradient(180deg, #f5e6d7 0%, #fffaf2 100%);
+        overflow: hidden;
+      }
+
+      .reeva-hero-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center right;
+        padding: 0;
+        transform: scale(1.15);
+        transform-origin: center top;
+      }
+
+      .reeva-hero-curve {
+        display: none;
+      }
+
+      .reeva-hero-image-area::after {
+        background: linear-gradient(180deg, transparent 68%, #fffaf2 100%);
+      }
+    }
+
+    @media screen and (max-width: 420px) {
+      .reeva-hero-image-area {
+        min-height: 300px;
+        overflow: hidden;
+      }
+
+      .reeva-hero-image {
+        position: absolute;
+        top: 0;
+        bottom: auto;
+        left: -30px;
+        right: auto;
+        padding: 0;
+        transform: scale(1.18);
+        transform-origin: center top;
+      }
+
+      .reeva-hero-content {
+        padding: 28px 18px 38px;
+      }
+
+      .reeva-hero-heading {
+        font-size: 39px;
+      }
+
+      .reeva-hero-description {
+        font-size: 15px;
+      }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Reeva Custom Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "New Everyday Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "Jewellery for\nEvery Day,\nEvery Moment"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover elegant rings, earrings, necklaces and bracelets crafted for daily wear, gifting and special occasions."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero girl image"
+    },
+    {
+      "type": "text",
+      "id": "hero_video",
+      "label": "Background video URL (.mp4)",
+      "info": "Upload your video to Files (Settings → Files) and paste the URL here"
+    },
+    
+    {
+      "type": "range",
+      "id": "video_overlay_opacity",
+      "label": "Video overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 60,
+      "unit": "%"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Primary button text",
+      "default": "Shop New Arrivals"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary button text",
+      "default": "Explore Collections"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reeva Custom Hero"
+    }
+  ]
+}
+{% endschema %}

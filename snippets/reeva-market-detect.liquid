@@ -1,0 +1,12 @@
+{%- liquid
+  # Detect US market based on visitor's localized country
+  if localization.country.iso_code == 'US'
+    assign is_us_market = true
+  else
+    assign is_us_market = false
+  endif
+-%}
+
+{%- comment -%} US CONTENT ZONE — add US-specific blocks below this line {%- endcomment -%}
+
+{%- comment -%} END US CONTENT ZONE {%- endcomment -%}

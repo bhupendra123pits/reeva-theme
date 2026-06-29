@@ -1,0 +1,548 @@
+{% comment %}
+  Reeva.life - Image Text Banner Section
+  File: sections/reeva-image-text-banner.liquid
+{% endcomment %}
+
+<section
+  class="reeva-image-text-banner section-{{ section.id }}"
+  style="
+    --reeva-bg: {{ section.settings.background_color }};
+    --reeva-card-bg: {{ section.settings.card_background }};
+    --reeva-heading: {{ section.settings.heading_color }};
+    --reeva-text: {{ section.settings.text_color }};
+    --reeva-accent: {{ section.settings.accent_color }};
+    --reeva-border: {{ section.settings.border_color }};
+    --reeva-top: {{ section.settings.padding_top }}px;
+    --reeva-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="reeva-itb-container">
+    <div class="reeva-itb-card reeva-itb-image-{{ section.settings.image_position }}">
+
+      <div class="reeva-itb-media">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1400
+            | image_tag:
+              loading: 'lazy',
+              class: 'reeva-itb-image',
+              widths: '500, 700, 900, 1100, 1400',
+              sizes: '(max-width: 749px) 100vw, 50vw',
+              alt: section.settings.heading
+          }}
+        {% else %}
+          <div class="reeva-itb-placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="reeva-itb-content">
+        {% if section.settings.kicker != blank %}
+          <div class="reeva-itb-kicker">{{ section.settings.kicker }}</div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="reeva-itb-text">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_features %}
+          <div class="reeva-itb-features">
+            {% for block in section.blocks %}
+              <div class="reeva-itb-feature" {{ block.shopify_attributes }}>
+                {% if block.settings.icon_svg != blank %}
+                  <span class="reeva-itb-feature-icon">
+                    {{ block.settings.icon_svg }}
+                  </span>
+                {% endif %}
+
+                <span class="reeva-itb-feature-text">
+                  {{ block.settings.feature_text }}
+                </span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="reeva-itb-buttons">
+          {% if section.settings.primary_button_label != blank %}
+            <a href="{{ section.settings.primary_button_link | default: '#' }}" class="reeva-itb-btn reeva-itb-btn-primary">
+              {{ section.settings.primary_button_label }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.secondary_button_label != blank %}
+            <a href="{{ section.settings.secondary_button_link | default: '#' }}" class="reeva-itb-btn reeva-itb-btn-secondary">
+              {{ section.settings.secondary_button_label }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-{{ section.id }} {
+    background: var(--reeva-bg);
+    padding-top: var(--reeva-top);
+    padding-bottom: var(--reeva-bottom);
+  }
+
+  .section-{{ section.id }} .reeva-itb-container {
+    width: min(100% - 32px, 1320px);
+    margin: 0 auto;
+  }
+
+  .section-{{ section.id }} .reeva-itb-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    background: var(--reeva-card-bg);
+    border: 1px solid var(--reeva-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 14px 36px rgba(37, 37, 37, 0.06);
+  }
+
+  .section-{{ section.id }} .reeva-itb-image-right .reeva-itb-media {
+    order: 2;
+  }
+
+  .section-{{ section.id }} .reeva-itb-image-right .reeva-itb-content {
+    order: 1;
+  }
+
+  .section-{{ section.id }} .reeva-itb-media {
+    position: relative;
+    min-height: 520px;
+    background: #f5efe5;
+    overflow: hidden;
+  }
+
+  .section-{{ section.id }} .reeva-itb-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .section-{{ section.id }} .reeva-itb-placeholder,
+  .section-{{ section.id }} .reeva-itb-placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .section-{{ section.id }} .reeva-itb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5efe5;
+  }
+
+  .section-{{ section.id }} .reeva-itb-placeholder svg {
+    opacity: 0.35;
+  }
+
+  .section-{{ section.id }} .reeva-itb-content {
+    padding: clamp(34px, 5vw, 76px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .section-{{ section.id }} .reeva-itb-kicker {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--reeva-accent);
+    margin-bottom: 18px;
+  }
+
+  .section-{{ section.id }} .reeva-itb-content h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(34px, 4.2vw, 60px);
+    line-height: 1.08;
+    font-weight: 500;
+    color: var(--reeva-heading);
+    margin: 0 0 22px;
+  }
+
+  .section-{{ section.id }} .reeva-itb-text {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--reeva-text);
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .section-{{ section.id }} .reeva-itb-content[style*="center"] .reeva-itb-text,
+  .section-{{ section.id }} .reeva-itb-content[style*="center"] .reeva-itb-features {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-{{ section.id }} .reeva-itb-features {
+    margin-top: 28px;
+    display: grid;
+    gap: 14px;
+    max-width: 500px;
+  }
+
+  .section-{{ section.id }} .reeva-itb-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--reeva-text);
+  }
+
+  .section-{{ section.id }} .reeva-itb-feature-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: rgba(38, 120, 112, 0.08);
+    color: var(--reeva-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-{{ section.id }} .reeva-itb-feature-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+  }
+
+  .section-{{ section.id }} .reeva-itb-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+
+  .section-{{ section.id }} .reeva-itb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 30px;
+    border-radius: 6px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+
+  .section-{{ section.id }} .reeva-itb-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .section-{{ section.id }} .reeva-itb-btn-primary {
+    background: var(--reeva-accent);
+    color: #ffffff;
+    border: 1px solid var(--reeva-accent);
+  }
+
+  .section-{{ section.id }} .reeva-itb-btn-primary:hover {
+    opacity: 0.92;
+  }
+
+  .section-{{ section.id }} .reeva-itb-btn-secondary {
+    background: transparent;
+    color: var(--reeva-accent);
+    border: 1px solid rgba(38, 120, 112, 0.35);
+  }
+
+  .section-{{ section.id }} .reeva-itb-btn-secondary:hover {
+    background: rgba(38, 120, 112, 0.06);
+  }
+
+  @media screen and (max-width: 989px) {
+    .section-{{ section.id }} .reeva-itb-card {
+      grid-template-columns: 1fr;
+    }
+
+    .section-{{ section.id }} .reeva-itb-image-right .reeva-itb-media,
+    .section-{{ section.id }} .reeva-itb-image-right .reeva-itb-content {
+      order: initial;
+    }
+
+    .section-{{ section.id }} .reeva-itb-media {
+      min-height: 420px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }} {
+      padding-top: calc(var(--reeva-top) * 0.7);
+      padding-bottom: calc(var(--reeva-bottom) * 0.7);
+    }
+
+    .section-{{ section.id }} .reeva-itb-container {
+      width: min(100% - 24px, 1320px);
+    }
+
+    .section-{{ section.id }} .reeva-itb-card {
+      border-radius: 14px;
+    }
+
+    .section-{{ section.id }} .reeva-itb-media {
+      min-height: 310px;
+    }
+
+    .section-{{ section.id }} .reeva-itb-content {
+      padding: 30px 22px 34px;
+      text-align: center;
+    }
+
+    .section-{{ section.id }} .reeva-itb-kicker {
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .section-{{ section.id }} .reeva-itb-content h2 {
+      font-size: 34px;
+      margin-bottom: 16px;
+    }
+
+    .section-{{ section.id }} .reeva-itb-text {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-{{ section.id }} .reeva-itb-features {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .section-{{ section.id }} .reeva-itb-buttons {
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .section-{{ section.id }} .reeva-itb-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Reeva Image Text Banner",
+  "tag": "section",
+  "class": "reeva-image-text-banner-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Small top heading",
+      "default": "Reeva.life Edit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "Timeless pieces for everyday luxury"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Explore jewellery designed for daily wear, meaningful gifting, and special moments. Each piece is styled to feel elegant, personal, and easy to wear.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position on desktop",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment on desktop",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show feature points",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#fffaf2"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f8f2e8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#282828"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#267870"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#eadcc7"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature point",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "SVG icon code",
+          "info": "Optional. Paste simple SVG code here."
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature text",
+          "default": "Elegant designs for everyday wear"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reeva Image Text Banner",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Elegant designs for everyday wear"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Perfect for gifting and special occasions"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Crafted with a refined, timeless finish"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

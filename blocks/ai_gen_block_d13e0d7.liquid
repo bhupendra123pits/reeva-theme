@@ -1,0 +1,912 @@
+{% doc %}
+  @prompt
+    Add a pincode/zipcode delivery checker section to the collection (category) page. It should include an input field where customers can enter their pincode, a "Check" button, and a message showing whether delivery is available or not to that pincode. The section should be free to use with no app required, using only Liquid and JavaScript. Style it to match a premium jewelry store aesthetic with clean, minimal design., want to show only icons and text pincode after click on it popup page is open, want to shift it in right 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-pincode-checker-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: flex-end;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-pincode-trigger-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: {{ block.settings.trigger_padding }}px {{ block.settings.trigger_padding | times: 1.5 }}px;
+    background-color: {{ block.settings.trigger_background }};
+    color: {{ block.settings.trigger_text_color }};
+    border: {{ block.settings.trigger_border_width }}px solid {{ block.settings.trigger_border_color }};
+    border-radius: {{ block.settings.trigger_border_radius }}px;
+    font-size: {{ block.settings.trigger_font_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-pincode-trigger-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.trigger_hover_background }};
+    color: {{ block.settings.trigger_hover_text_color }};
+    border-color: {{ block.settings.trigger_hover_border_color }};
+  }
+
+  .ai-pincode-trigger-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    flex-shrink: 0;
+  }
+
+  .ai-pincode-overlay-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .ai-pincode-overlay-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ai-pincode-popup-{{ ai_gen_id }} {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: {{ block.settings.popup_max_width }}px;
+    background-color: {{ block.settings.popup_background }};
+    border-radius: {{ block.settings.popup_border_radius }}px;
+    padding: {{ block.settings.popup_padding }}px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .ai-pincode-popup-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .ai-pincode-popup-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: {{ block.settings.spacing }}px;
+  }
+
+  .ai-pincode-popup-title-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.popup_text_color }};
+    margin: 0;
+  }
+
+  .ai-pincode-close-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: {{ block.settings.popup_text_color }};
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-pincode-close-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  .ai-pincode-close-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ai-pincode-popup-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.popup_text_color }};
+    margin: 0 0 {{ block.settings.spacing }}px 0;
+    opacity: 0.8;
+  }
+
+  .ai-pincode-form-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.input_gap }}px;
+    align-items: stretch;
+    margin-bottom: {{ block.settings.spacing }}px;
+  }
+
+  .ai-pincode-input-wrapper-{{ ai_gen_id }} {
+    flex: 1;
+    position: relative;
+  }
+
+  .ai-pincode-input-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.input_padding }}px {{ block.settings.input_padding | times: 1.5 }}px;
+    border: {{ block.settings.input_border_width }}px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    background-color: {{ block.settings.input_background }};
+    color: {{ block.settings.input_text_color }};
+    font-size: {{ block.settings.input_font_size }}px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-pincode-input-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.input_focus_border_color }};
+    box-shadow: 0 0 0 3px {{ block.settings.input_focus_border_color }}33;
+  }
+
+  .ai-pincode-input-{{ ai_gen_id }}::placeholder {
+    color: {{ block.settings.input_text_color }};
+    opacity: 0.5;
+  }
+
+  .ai-pincode-button-{{ ai_gen_id }} {
+    padding: {{ block.settings.input_padding }}px {{ block.settings.button_padding }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .ai-pincode-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-pincode-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ai-pincode-message-{{ ai_gen_id }} {
+    padding: {{ block.settings.message_padding }}px;
+    border-radius: {{ block.settings.message_border_radius }}px;
+    font-size: {{ block.settings.message_font_size }}px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .ai-pincode-message-{{ ai_gen_id }}.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ai-pincode-message-{{ ai_gen_id }}.success {
+    background-color: {{ block.settings.success_background }};
+    color: {{ block.settings.success_text_color }};
+    border: 1px solid {{ block.settings.success_border_color }};
+  }
+
+  .ai-pincode-message-{{ ai_gen_id }}.error {
+    background-color: {{ block.settings.error_background }};
+    color: {{ block.settings.error_text_color }};
+    border: 1px solid {{ block.settings.error_border_color }};
+  }
+
+  .ai-pincode-message-{{ ai_gen_id }}.info {
+    background-color: {{ block.settings.info_background }};
+    color: {{ block.settings.info_text_color }};
+    border: 1px solid {{ block.settings.info_border_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-pincode-checker-{{ ai_gen_id }} {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ai-pincode-popup-{{ ai_gen_id }} {
+      width: 95%;
+      padding: {{ block.settings.popup_padding | times: 0.75 }}px;
+    }
+
+    .ai-pincode-form-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-pincode-button-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<pincode-checker-{{ ai_gen_id }}
+  class="ai-pincode-checker-{{ ai_gen_id }}"
+  data-serviceable-pincodes="{{ block.settings.serviceable_pincodes }}"
+  {{ block.shopify_attributes }}
+>
+  <button
+    type="button"
+    class="ai-pincode-trigger-{{ ai_gen_id }}"
+    aria-label="Check delivery availability"
+  >
+    <svg class="ai-pincode-trigger-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </svg>
+    <span>{{ block.settings.trigger_text }}</span>
+  </button>
+
+  <div class="ai-pincode-overlay-{{ ai_gen_id }}"></div>
+
+  <div class="ai-pincode-popup-{{ ai_gen_id }}" role="dialog" aria-modal="true" aria-labelledby="pincode-title-{{ ai_gen_id }}">
+    <div class="ai-pincode-popup-header-{{ ai_gen_id }}">
+      <h3 class="ai-pincode-popup-title-{{ ai_gen_id }}" id="pincode-title-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </h3>
+      <button
+        type="button"
+        class="ai-pincode-close-{{ ai_gen_id }}"
+        aria-label="Close"
+      >
+        <svg class="ai-pincode-close-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    {% if block.settings.description != blank %}
+      <p class="ai-pincode-popup-description-{{ ai_gen_id }}">{{ block.settings.description }}</p>
+    {% endif %}
+
+    <div class="ai-pincode-form-{{ ai_gen_id }}">
+      <div class="ai-pincode-input-wrapper-{{ ai_gen_id }}">
+        <input
+          type="text"
+          class="ai-pincode-input-{{ ai_gen_id }}"
+          placeholder="{{ block.settings.input_placeholder }}"
+          aria-label="Enter pincode"
+          maxlength="10"
+        >
+      </div>
+      <button
+        type="button"
+        class="ai-pincode-button-{{ ai_gen_id }}"
+        aria-label="Check delivery availability"
+      >
+        {{ block.settings.button_text }}
+      </button>
+    </div>
+
+    <div class="ai-pincode-message-{{ ai_gen_id }}" role="status" aria-live="polite"></div>
+  </div>
+</pincode-checker-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PincodeChecker{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.trigger = this.querySelector('.ai-pincode-trigger-{{ ai_gen_id }}');
+        this.overlay = this.querySelector('.ai-pincode-overlay-{{ ai_gen_id }}');
+        this.popup = this.querySelector('.ai-pincode-popup-{{ ai_gen_id }}');
+        this.closeButton = this.querySelector('.ai-pincode-close-{{ ai_gen_id }}');
+        this.input = this.querySelector('.ai-pincode-input-{{ ai_gen_id }}');
+        this.button = this.querySelector('.ai-pincode-button-{{ ai_gen_id }}');
+        this.message = this.querySelector('.ai-pincode-message-{{ ai_gen_id }}');
+        this.serviceablePincodes = this.dataset.serviceablePincodes || '';
+      }
+
+      connectedCallback() {
+        this.trigger.addEventListener('click', () => this.openPopup());
+        this.closeButton.addEventListener('click', () => this.closePopup());
+        this.overlay.addEventListener('click', () => this.closePopup());
+        
+        this.button.addEventListener('click', () => this.checkPincode());
+        this.input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            this.checkPincode();
+          }
+        });
+
+        this.input.addEventListener('input', (e) => {
+          e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.popup.classList.contains('active')) {
+            this.closePopup();
+          }
+        });
+      }
+
+      openPopup() {
+        this.overlay.classList.add('active');
+        this.popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+          this.input.focus();
+        }, 300);
+      }
+
+      closePopup() {
+        this.overlay.classList.remove('active');
+        this.popup.classList.remove('active');
+        document.body.style.overflow = '';
+        this.message.classList.remove('visible');
+        this.input.value = '';
+      }
+
+      checkPincode() {
+        const pincode = this.input.value.trim();
+
+        if (!pincode) {
+          this.showMessage('Please enter a pincode', 'info');
+          return;
+        }
+
+        if (pincode.length < 4) {
+          this.showMessage('Please enter a valid pincode', 'error');
+          return;
+        }
+
+        this.button.disabled = true;
+        this.button.textContent = 'Checking...';
+
+        setTimeout(() => {
+          const isServiceable = this.isPincodeServiceable(pincode);
+
+          if (isServiceable) {
+            this.showMessage('✓ Delivery available to this pincode', 'success');
+          } else {
+            this.showMessage('✗ Delivery not available to this pincode', 'error');
+          }
+
+          this.button.disabled = false;
+          this.button.textContent = '{{ block.settings.button_text }}';
+        }, 800);
+      }
+
+      isPincodeServiceable(pincode) {
+        if (!this.serviceablePincodes) {
+          return true;
+        }
+
+        const pincodeList = this.serviceablePincodes
+          .split(',')
+          .map(p => p.trim())
+          .filter(p => p);
+
+        if (pincodeList.length === 0) {
+          return true;
+        }
+
+        return pincodeList.some(serviceablePincode => {
+          if (serviceablePincode.includes('-')) {
+            const [start, end] = serviceablePincode.split('-').map(p => parseInt(p.trim()));
+            const pincodeNum = parseInt(pincode);
+            return pincodeNum >= start && pincodeNum <= end;
+          }
+          return pincode.startsWith(serviceablePincode);
+        });
+      }
+
+      showMessage(text, type) {
+        this.message.textContent = text;
+        this.message.className = 'ai-pincode-message-{{ ai_gen_id }} visible ' + type;
+      }
+    }
+
+    customElements.define('pincode-checker-{{ ai_gen_id }}', PincodeChecker{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Pincode delivery checker",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Trigger button"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "trigger_text",
+      "label": "Text",
+      "default": "Check Delivery"
+    },
+    {
+      "type": "range",
+      "id": "trigger_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "trigger_padding",
+      "label": "Padding",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "trigger_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "trigger_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "trigger_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "trigger_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "trigger_border_color",
+      "label": "Border",
+      "default": "#dfdfdf"
+    },
+    {
+      "type": "color",
+      "id": "trigger_hover_background",
+      "label": "Hover background",
+      "default": "#f6f2ec"
+    },
+    {
+      "type": "color",
+      "id": "trigger_hover_text_color",
+      "label": "Hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "trigger_hover_border_color",
+      "label": "Hover border",
+      "default": "#3f8984"
+    },
+    {
+      "type": "header",
+      "content": "Popup content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Check Delivery Availability"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "playfair_display_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Enter your pincode to check if we deliver to your area"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "inline_richtext",
+      "id": "input_placeholder",
+      "label": "Input placeholder",
+      "default": "Enter pincode"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Check"
+    },
+    {
+      "type": "header",
+      "content": "Serviceable pincodes"
+    },
+    {
+      "type": "paragraph",
+      "content": "Enter pincodes separated by commas. Use ranges like 110001-110099 or prefixes like 110 for all pincodes starting with 110. Leave empty to show all pincodes as serviceable."
+    },
+    {
+      "type": "textarea",
+      "id": "serviceable_pincodes",
+      "label": "Serviceable pincodes",
+      "placeholder": "110001, 110002, 400001-400099, 560"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "popup_max_width",
+      "label": "Popup max width",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "popup_padding",
+      "label": "Popup padding",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "popup_border_radius",
+      "label": "Popup border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing between elements",
+      "min": 12,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Popup colors"
+    },
+    {
+      "type": "color",
+      "id": "popup_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "popup_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Input field"
+    },
+    {
+      "type": "range",
+      "id": "input_padding",
+      "label": "Padding",
+      "min": 10,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_gap",
+      "label": "Gap between input and button",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "input_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Border",
+      "default": "#dfdfdf"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border_color",
+      "label": "Focus border",
+      "default": "#3f8984"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Horizontal padding",
+      "min": 20,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#3f8984"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#3f8984"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#2e7d78"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border",
+      "default": "#2e7d78"
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "range",
+      "id": "message_padding",
+      "label": "Padding",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "message_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "message_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "success_background",
+      "label": "Success background",
+      "default": "#eef1ea"
+    },
+    {
+      "type": "color",
+      "id": "success_text_color",
+      "label": "Success text",
+      "default": "#2e7d78"
+    },
+    {
+      "type": "color",
+      "id": "success_border_color",
+      "label": "Success border",
+      "default": "#3f8984"
+    },
+    {
+      "type": "color",
+      "id": "error_background",
+      "label": "Error background",
+      "default": "#fef2f2"
+    },
+    {
+      "type": "color",
+      "id": "error_text_color",
+      "label": "Error text",
+      "default": "#991b1b"
+    },
+    {
+      "type": "color",
+      "id": "error_border_color",
+      "label": "Error border",
+      "default": "#dc2626"
+    },
+    {
+      "type": "color",
+      "id": "info_background",
+      "label": "Info background",
+      "default": "#eff6ff"
+    },
+    {
+      "type": "color",
+      "id": "info_text_color",
+      "label": "Info text",
+      "default": "#1e40af"
+    },
+    {
+      "type": "color",
+      "id": "info_border_color",
+      "label": "Info border",
+      "default": "#3b82f6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pincode delivery checker"
+    }
+  ]
+}
+{% endschema %}

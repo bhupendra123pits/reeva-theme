@@ -1,0 +1,92 @@
+{% comment %}
+  Reeva Product Badges Section
+  Displays product-specific badges dynamically from product metafields
+  Includes Theme Editor preview support
+{% endcomment %}
+
+{% assign preview_product = product %}
+{% if section.settings.test_product != blank %}
+  {% assign preview_product = all_products[section.settings.test_product] %}
+{% endif %}
+
+{% assign badges = preview_product.metafields.custom.product_badges.value %}
+
+{% if badges != blank %}
+  <div class="reeva-product-badges-wrapper">
+    <ul class="reeva-product-badges">
+      {% for badge in badges %}
+        <li>
+          <img
+            src="{{ badge | image_url: width: 250 }}"
+            alt="{{ badge.alt | default: 'Badge' }}"
+            width="36"
+            height="36"
+            loading="lazy"
+          >
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+<style>
+  .reeva-product-badges-wrapper {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .reeva-product-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    {% comment %} margin: 0; {% endcomment %}
+    margin: 0 0 0 59%;
+  }
+
+  .reeva-product-badges li img {
+    width: 80px;
+    height: auto;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .reeva-product-badges {
+      gap: 8px;
+    }
+
+    .reeva-product-badges li img {
+      width: 30px;
+    }
+    @media screen and (max-width: 749px) {
+    .reeva-product-badges {
+      gap: 8px;
+      margin-left: 5%;        /* ← reset margin on mobile */
+      justify-content: flex-start;
+    }
+
+    .reeva-product-badges li img {
+      width: 60px;
+    }
+  }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Badges",
+  "settings": [
+    {
+      "type": "product",
+      "id": "test_product",
+      "label": "Test product for preview"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Badges"
+    }
+  ]
+}
+{% endschema %}

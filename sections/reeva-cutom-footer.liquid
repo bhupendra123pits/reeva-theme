@@ -1,0 +1,714 @@
+<section class="reeva-custom-footer">
+  <div class="reeva-footer-main">
+    <div class="reeva-footer-brand">
+      {% if section.settings.logo_image != blank %}
+        {% comment %}
+          <img
+            src="{{ section.settings.logo_image | image_url: width: 420 }}"
+            alt="{{ shop.name }}"
+            class="reeva-footer-logo-img"
+            loading="lazy"
+          >
+        {% endcomment %}
+      {% else %}
+        <div class="reeva-footer-logo-text">{{ section.settings.logo_text }}</div>
+      {% endif %}
+
+      {% if section.settings.brand_text != blank %}
+        <p class="reeva-footer-brand-text">{{ section.settings.brand_text }}</p>
+      {% endif %}
+
+      <div class="reeva-footer-brand-line"></div>
+
+      {% if section.settings.newsletter_heading != blank %}
+        <h3 class="reeva-footer-news-heading">{{ section.settings.newsletter_heading }}</h3>
+      {% endif %}
+
+      {% if section.settings.newsletter_text != blank %}
+        <p class="reeva-footer-news-text">{{ section.settings.newsletter_text }}</p>
+      {% endif %}
+
+      {% form 'customer', class: 'reeva-footer-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input
+          type="email"
+          name="contact[email]"
+          class="reeva-footer-email"
+          placeholder="Enter your email address"
+          required
+        >
+        <button type="submit" class="reeva-footer-submit">Subscribe</button>
+      {% endform %}
+    </div>
+
+    <div class="reeva-footer-menu-area">
+      {% if section.settings.footer_menu != blank %}
+        {% for link in section.settings.footer_menu.links %}
+          <div class="reeva-footer-menu-col">
+            <h4>{{ link.title }}</h4>
+            <div class="reeva-footer-heading-line"></div>
+
+            {% if link.links != blank %}
+              <ul>
+                {% for child_link in link.links %}
+                  <li>
+                    <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="reeva-footer-trust">
+    <div class="reeva-footer-trust-item">
+      <div class="reeva-footer-trust-icon">
+        <svg class="reeva-diamond-svg" viewBox="80 50 140 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#3f8984" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M90 95L120 60H180L210 95L150 190L90 95Z"/>
+            <path d="M90 95H210"/>
+            <path d="M120 60L150 95L180 60"/>
+            <path d="M120 95L150 190L180 95"/>
+          </g>
+        </svg>
+      </div>
+
+      <div>
+        <strong>IGI Certified Diamonds</strong>
+        <span>Certified brilliance you can trust.</span>
+      </div>
+    </div>
+
+    <div class="reeva-footer-trust-divider"></div>
+
+    <div class="reeva-footer-trust-item">
+      <div class="reeva-footer-trust-icon">
+        <svg viewBox="-60 -20 480 300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#3f8984" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M181.799,62.746c2.369,0,5.332,1.185,8.885,4.737l69.274,69.272c11.244,11.249,4.735,20.132-10.069,18.949h-68.09l40.854,42.036h87.038c26.643,1.186,47.957-23.684,21.313-49.141L209.629,27.815c-10.064-10.067-18.945-16.58-27.83-16.58c-8.881,0-17.761,6.513-27.826,16.58L32.597,148.6c-26.642,25.457-5.328,50.326,21.314,49.141h87.037l40.851-42.036h-68.088c-14.802,1.185-21.314-7.7-10.064-18.949l69.272-69.272C176.471,63.931,179.434,62.746,181.799,62.746"/>
+            <circle cx="181.4" cy="128.33" r="25.16"/>
+            <path d="M181.527,243.134h127.294c20.728-0.592,26.056-5.921,43.226-39.667c-23.682,22.498-29.01,23.682-43.226,23.682c-42.029,0-84.663,0-127.294,0c-42.626,0-85.257,0-127.295,0c-14.209,0-19.538-1.184-43.223-23.682c17.169,33.746,22.5,39.075,43.223,39.667H181.527z"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <strong>BIS Hallmarked</strong>
+        <span>Assured purity and quality in every piece.</span>
+      </div>
+    </div>
+
+    <div class="reeva-footer-trust-divider"></div>
+
+    <div class="reeva-footer-trust-item">
+      <div class="reeva-footer-trust-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.5 12a8 8 0 1 1-2.3-5.6"
+                fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          <path d="M20 4.3v3h-3"
+                fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="13.8" y="14.3" text-anchor="middle"
+                font-family="Montserrat, sans-serif" font-size="7" font-weight="700"
+                fill="currentColor">30</text>
+        </svg>
+      </div>
+      <div>
+        <strong>30-Day Easy Returns</strong>
+        <span>Hassle-free returns within 30 days.</span>
+      </div>
+    </div>
+
+    <div class="reeva-footer-trust-divider"></div>
+
+    <div class="reeva-footer-trust-item">
+      <div class="reeva-footer-trust-icon">
+        <svg
+          class="reeva-truck-svg"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          width="900px"
+          height="1200px"
+          viewBox="0 0 612 792"
+          style="enable-background:new 0 0 612 792;"
+          xml:space="preserve"
+        >
+                   <path style="fill:none;stroke:#2f7f7a;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;" d="M175.167,465.36H157.08
+          c-10.2,0-16.32-6.12-16.32-16.32V308.28c0-10.2,6.12-16.32,16.32-16.32h197.88c10.2,0,16.32,6.12,16.32,16.32V465.36H245.5"/>
+          <path style="fill:none;stroke:#2f7f7a;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;" d="M376.28,338.88h69.359
+          l44.88,71.4v55.08h-40.8"/>
+          <path style="fill:none;stroke:#2f7f7a;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;" d="M371.28,410.28H485.52"/>
+          <path style="fill:none;stroke:#2f7f7a;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;" d="M412.08,338.88v71.4"/>
+          <path style="fill-rule:evenodd;clip-rule:evenodd;stroke:#3f8984;stroke-width:10;stroke-miterlimit:10;" d="M208.064,331.528
+          c5.396-0.914,10.814-1.672,16.163-2.769c9.688-1.987,18.875-5.411,27.642-10.01c0.959-0.504,2.61-0.638,3.517-0.152
+          c13.073,7.007,26.975,11.153,41.738,12.416c1.453,0.124,2.356,0.341,2.557,2.14c2.104,18.895,0.58,37.399-6.064,55.299
+          c-6.925,18.652-19.278,32.428-37.381,40.952c-1.862,0.877-3.354,0.8-5.155-0.063c-20.672-9.929-32.987-26.704-39.39-48.221
+          c-4.785-16.079-5.673-32.518-3.835-49.142C207.873,331.819,207.994,331.673,208.064,331.528z M295.766,347.995
+          c0-3.479-0.03-6.96,0.011-10.439c0.023-2.032-0.866-2.817-2.93-3.031c-10.804-1.117-21.379-3.571-31.047-8.454
+          c-5.758-2.907-10.306-2.885-16.063,0.004c-9.843,4.939-20.64,7.188-31.59,8.452c-1.185,0.137-2.366,0.032-2.527,1.872
+          c-1.585,18.147,0.434,35.811,7.387,52.714c6.339,15.415,16.693,27.355,31.594,35.182c2.207,1.157,4.038,1.211,6.285,0.031
+          c14.178-7.443,24.443-18.481,30.929-33.092C293.93,377.459,296.018,362.924,295.766,347.995z"/>
+          <circle style="fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#2f7f7a;stroke-width:18;stroke-miterlimit:10;" cx="211.289" cy="480.801" r="36.989"/>
+          <circle style="fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#2f7f7a;stroke-width:18;stroke-miterlimit:10;" cx="412.783" cy="480.801" r="36.989"/>
+        </svg>
+      </div>
+      <div>
+        <strong>Free Insured Shipping</strong>
+        <span>Safe, secure & insured delivery across India.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reeva-footer-bottom">
+    <p>
+      © {{ 'now' | date: '%Y' }}
+      {{ shop.name }}. All rights reserved.
+    </p>
+
+    {% if section.settings.show_social %}
+      {% if section.settings.show_social %}
+        <div class="reeva-footer-social" aria-label="Social media links">
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                <circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+
+          {% if section.settings.facebook_url != blank %}
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.2 8.2H16V5.2c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.7v2.6H6v3.3h2.8V24h3.4v-8.3H15l.5-3.3h-3.3V10c0-1 .3-1.8 2-1.8Z" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+
+          {% if section.settings.pinterest_url != blank %}
+            <a href="{{ section.settings.pinterest_url }}" target="_blank" rel="noopener" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.1 3.2C7.2 3.2 4 6.5 4 10.7c0 2.6 1.4 4.2 2.3 4.2.4 0 .6-1.1.6-1.4 0-.4-.9-1.1-.9-2.6 0-3 2.3-5.2 5.3-5.2 2.6 0 4.6 1.5 4.6 4.2 0 2-1 5.7-3.6 5.7-1 0-1.8-.7-1.8-1.7 0-1.5 1-3 1-4.5 0-2.4-3.4-2-3.4 1 0 .6.1 1.2.4 1.7 0 0-1.4 6-1.7 7.1-.1.5-.1 1.1-.1 1.7 0 .2.3.2.4.1.6-.8 1.5-2.2 1.8-3.2.1-.4.7-2.7.7-2.7.7 1.3 2 2 3.5 2 4.5 0 6.9-4.1 6.9-8 0-3.8-3.3-6.9-7.9-6.9Z" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+
+          {% if section.settings.youtube_url != blank %}
+            <a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21.5 7.1s-.2-1.5-.9-2.1c-.8-.9-1.7-.9-2.1-.9C15.6 3.9 12 3.9 12 3.9s-3.6 0-6.5.2c-.4 0-1.3.1-2.1.9-.7.7-.9 2.1-.9 2.1S2.3 8.8 2.3 10.5v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.9 2.1c.8.9 1.9.8 2.4.9 1.7.2 6.2.2 6.2.2s3.6 0 6.5-.2c.4 0 1.3-.1 2.1-.9.7-.7.9-2.1.9-2.1s.2-1.7.2-3.4v-1.6c0-1.7-.2-3.4-.2-3.4ZM10 14.2V8.3l5.6 3-5.6 2.9Z" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+<style>
+      .reeva-custom-footer {
+        background:
+          radial-gradient(circle at 12% 20%, rgba(216, 200, 172, 0.18), transparent 30%),
+          #fffaf2;
+        border-top: 1px solid rgba(216, 200, 172, 0.45);
+        color: #1f2024;
+      }
+
+      .reeva-footer-main {
+        max-width: 1720px;
+        margin: 0 auto;
+        padding: 88px 90px 64px;
+        display: grid;
+        grid-template-columns: 1.25fr 2.75fr;
+        gap: 90px;
+      }
+
+      .reeva-footer-logo-text {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #3f8984;
+        font-size: clamp(48px, 4vw, 72px);
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: -2px;
+      }
+
+      .reeva-footer-logo-img {
+        max-width: 300px;
+        height: auto;
+        display: block;
+      }
+
+      .reeva-footer-brand-text {
+        margin: 28px 0 0;
+        max-width: 390px;
+        color: #39404a;
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      .reeva-footer-brand-line {
+        width: 100%;
+        max-width: 390px;
+        height: 1px;
+        background: rgba(198, 155, 83, 0.42);
+        margin: 42px 0 34px;
+      }
+
+      .reeva-footer-news-heading {
+        margin: 0 0 16px;
+        font-family: Georgia, "Times New Roman", serif;
+        color: #3f8984;
+        font-size: 28px;
+        font-weight: 400;
+      }
+
+      .reeva-footer-news-text {
+        margin: 0 0 28px;
+        max-width: 390px;
+        color: #39404a;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .reeva-footer-form {
+        display: flex;
+        max-width: 430px;
+        border: 1px solid rgba(31, 32, 36, 0.18);
+        border-radius: 5px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .reeva-footer-email {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        padding: 17px 18px;
+        font-size: 15px;
+        outline: none;
+        background: #fff;
+        color: #1f2024;
+      }
+
+      .reeva-footer-submit {
+        border: 0;
+        background: #3f8984;
+        color: #fff;
+        padding: 0 26px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .reeva-footer-submit:hover {
+        background: #32736f;
+      }
+
+      .reeva-footer-menu-area {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 62px;
+      }
+
+      .reeva-footer-menu-col h4 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 2.2px;
+        text-transform: uppercase;
+        color: #1f2024;
+        font-weight: 700;
+      }
+
+      .reeva-footer-heading-line {
+        width: 38px;
+        height: 1px;
+        background: #c69b53;
+        margin: 20px 0 26px;
+      }
+
+      .reeva-footer-menu-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .reeva-footer-menu-col li {
+        margin-bottom: 16px;
+      }
+
+      .reeva-footer-menu-col a {
+        color: #2f3742;
+        text-decoration: none;
+        font-size: 17px;
+        line-height: 1.35;
+        transition: all 0.2s ease;
+      }
+
+      {% comment %} .reeva-footer-menu-col a:hover {
+        color: #3f8984;
+        padding-left: 4px;
+      } {% endcomment %}
+
+      .reeva-footer-trust {
+        border-top: 1px solid rgba(216, 200, 172, 0.36);
+        border-bottom: 1px solid rgba(216, 200, 172, 0.36);
+        background: rgba(255, 250, 242, 0.72);
+        padding: 34px 90px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+        align-items: center;
+        gap: 42px;
+      }
+
+      .reeva-footer-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .reeva-footer-trust-icon {
+        width: 68px;
+        min-width: 68px;
+        height: 68px;
+        color: #2f7f7a;
+      }
+
+
+      .reeva-footer-trust-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .reeva-footer-trust-item strong {
+        display: block;
+        color: #1f2024;
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+
+      .reeva-footer-trust-item span {
+        display: block;
+        color: #4f4f4f;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .reeva-footer-trust-divider {
+        width: 1px;
+        height: 70px;
+        background: rgba(198, 155, 83, 0.42);
+      }
+
+      .reeva-footer-bottom {
+        max-width: 1720px;
+        margin: 0 auto;
+        padding: 26px 90px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .reeva-footer-bottom p {
+        margin: 0;
+        color: #4f4f4f;
+        font-size: 14px;
+      }
+
+     .reeva-footer-social {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .reeva-footer-social a {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(63, 137, 132, 0.35);
+      border-radius: 50%;
+      color: #3f8984;
+      background: rgba(255, 255, 255, 0.45);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .reeva-footer-social a svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .reeva-footer-social a:hover {
+      background: #3f8984;
+      color: #ffffff;
+      border-color: #3f8984;
+      transform: translateY(-1px);
+    }
+
+      @media screen and (max-width: 1199px) {
+        .reeva-footer-main {
+          padding: 70px 42px 54px;
+          grid-template-columns: 1fr;
+          gap: 56px;
+        }
+
+        .reeva-footer-menu-area {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 34px;
+        }
+
+        .reeva-footer-menu-col a {
+          font-size: 15px;
+        }
+
+        .reeva-footer-trust {
+          padding: 28px 42px;
+          grid-template-columns: 1fr 1fr;
+          gap: 28px;
+        }
+
+        .reeva-footer-trust-divider {
+          display: none;
+        }
+
+        .reeva-footer-bottom {
+          padding: 24px 42px;
+        }
+      }
+
+      @media screen and (max-width: 749px) {
+        .reeva-footer-main {
+          padding: 48px 22px 38px;
+          gap: 42px;
+        }
+
+        .reeva-footer-logo-text {
+          font-size: 48px;
+        }
+
+        .reeva-footer-logo-img {
+          max-width: 230px;
+        }
+
+        .reeva-footer-brand-text {
+          font-size: 15px;
+          line-height: 1.55;
+        }
+
+        .reeva-footer-brand-line {
+          margin: 30px 0 26px;
+        }
+
+        .reeva-footer-news-heading {
+          font-size: 24px;
+        }
+
+        .reeva-footer-news-text {
+          font-size: 15px;
+        }
+
+        .reeva-footer-form {
+          max-width: 100%;
+        }
+
+        .reeva-footer-email {
+          padding: 14px 14px;
+          font-size: 14px;
+        }
+
+        .reeva-footer-submit {
+          padding: 0 18px;
+          font-size: 14px;
+        }
+
+        .reeva-footer-menu-area {
+          grid-template-columns: 1fr 1fr;
+          gap: 34px 24px;
+        }
+
+        .reeva-footer-menu-col h4 {
+          font-size: 12px;
+          letter-spacing: 1.7px;
+        }
+
+        .reeva-footer-heading-line {
+          margin: 14px 0 18px;
+        }
+
+        .reeva-footer-menu-col li {
+          margin-bottom: 11px;
+        }
+
+        .reeva-footer-menu-col a {
+          font-size: 14px;
+        }
+
+        .reeva-footer-trust {
+          padding: 26px 22px;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .reeva-footer-trust-item {
+          gap: 18px;
+        }
+
+        .reeva-footer-trust-icon {
+          width: 46px;
+          min-width: 46px;
+          height: 46px;
+        }
+
+        .reeva-footer-bottom {
+          padding: 22px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .reeva-footer-social {
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media screen and (max-width: 420px) {
+        .reeva-footer-menu-area {
+          grid-template-columns: 1fr;
+        }
+
+        .reeva-footer-form {
+          flex-direction: column;
+        }
+
+        .reeva-footer-submit {
+          min-height: 48px;
+        }
+      }
+      /* Reeva footer typography - Montserrat */
+    .reeva-custom-footer,
+    .reeva-custom-footer a,
+    .reeva-custom-footer p,
+    .reeva-custom-footer span,
+    .reeva-custom-footer li,
+    .reeva-custom-footer h4 {
+      font-family: "Montserrat", sans-serif !important;
+    }
+
+    /* Footer column headings */
+    .reeva-footer-menu-col h4 {
+      font-family: "Montserrat", sans-serif !important;
+      font-size: 13px !important;
+      line-height: 1.2 !important;
+      font-weight: 700 !important;
+      letter-spacing: 2.6px !important;
+      text-transform: uppercase !important;
+    }
+
+    /* Footer menu links */
+    .reeva-footer-menu-col a {
+      font-family: "Montserrat", sans-serif !important;
+      font-size: 14px !important;
+      line-height: 1.35 !important;
+      font-weight: 400 !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* Reduce vertical spacing between links */
+    .reeva-footer-menu-col li {
+      margin-bottom: 11px !important;
+    }
+
+    .reeva-footer-trust-item .reeva-diamond-svg {
+    transform: scale(.5);
+    transform-origin: center;
+  }
+    .reeva-footer-trust .reeva-truck-svg{
+        transform: scale(1.5);
+    transform-origin: center;
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Reeva Custom Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Footer logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "Reeva.life"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "Jewellery crafted for everyday elegance, meaningful gifting, and timeless celebrations."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Stay close to the sparkle"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Get updates on new arrivals, offers, gifting edits, and styling inspiration."
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reeva Custom Footer"
+    }
+  ]
+}
+{% endschema %}
