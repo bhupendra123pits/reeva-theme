@@ -2380,6 +2380,10 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
   font-size: 0.6rem;
 }
 
+.compare-at-price--product-page {
+  font-size: 1.1rem;
+}
+
 .price-item__group {
   display: inline-block;
 }
