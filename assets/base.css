@@ -2377,7 +2377,7 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
   opacity: 0.4;
   text-decoration-line: line-through;
   text-decoration-thickness: 1.5px;
-  font-size: 1.1rem;
+  font-size: 0.6rem;
 }
 
 .price-item__group {
